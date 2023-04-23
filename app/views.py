@@ -12,8 +12,9 @@ def get_tasks():
 
 
 @app_v1.route('/tasks/<id>', methods=['GET'])
-def get_task():
-    pass
+def get_task(id):
+    task = Task.query.filter_by(id=id).first()
+    return response(task.serialize())
 
 
 @app_v1.route('/tasks', methods=['POST'])
