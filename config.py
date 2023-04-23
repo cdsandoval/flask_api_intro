@@ -8,7 +8,13 @@ class DevelopmentConfig(Config):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
+class TestConfig(Config):
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = 'postgresql://localhost/flask_api_test'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 config = {
-    'development': DevelopmentConfig
+    'development': DevelopmentConfig,
+    'test': TestConfig
 }

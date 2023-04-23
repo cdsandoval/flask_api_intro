@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from .responses import response, not_found
 from .models.task import Task
 
@@ -23,7 +23,12 @@ def get_task(id):
 
 @app_v1.route('/tasks', methods=['POST'])
 def create_task():
-    pass
+    json = request.get_json(force=True)
+    task = Task.new(json['title'], json['description'], json['deadline'])
+    if task.save():
+        return response(task.serialize())
+
+    return {}
 
 
 @app_v1.route('/tasks/<id>', methods=['PUT'])
