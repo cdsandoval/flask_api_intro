@@ -1,11 +1,12 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
+from .responses import response
 
 app_v1 = Blueprint('api', __name__, url_prefix='/api/v1')
 
 
 @app_v1.route('/tasks', methods=['GET'])
 def get_tasks():
-    return jsonify({
+    return response({
         'message': 'Funciona'
     })
 
