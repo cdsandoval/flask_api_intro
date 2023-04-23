@@ -12,3 +12,11 @@ class Task(db.Model):
 
     def __str__(self):
         return self.title
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'description': self.description,
+            'deadline': self.deadline
+        }
